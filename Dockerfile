@@ -42,14 +42,14 @@ RUN git clone https://github.com/cawka/pybindgen.git pybindgen
 RUN git clone https://github.com/ChristianKreuzberger/amus-ndnSIM.git ns-3/src/ndnSIM
 RUN git clone https://github.com/danposch/itec-ndn.git
 RUN cd pybindgen && git checkout e11c02d87924d92ee80991c9d663e1398a468008
-RUN cd ../ndn-cxx && git checkout cbf054dd31596160b181ed60befe25ef388cb674
-RUN cd ../ns-3 && git checkout 4e388e47d715c3206374974a40cbab7ce428936f
+RUN cd ndn-cxx && git checkout a1ffbc7a256f308d0ac318f02ebba1d6fa2305f8
+RUN cd ns-3 && git checkout 4e388e47d715c3206374974a40cbab7ce428936f
 RUN cd ns-3/src/ndnSIM/ git checkout 86a881d9898df74fa4cfd8e85684a3ae81ab02e6
 
 #Paths to NDN forwarders
 RUN cp itec-ndn/extern/forwarder.cpp ns-3/src/ndnSIM/NFD/daemon/fw/forwarder.cpp
 RUN cp itec-ndn/extern/forwarder.hpp ns-3/src/ndnSIM/NFD/daemon/fw/forwarder.hpp
-RUN itec-ndn/extern/ndn-content-store.hpp ns-3/src/ndnSIM/model/cs/ndn-content-store.hpp
+RUN cp itec-ndn/extern/ndn-content-store.hpp ns-3/src/ndnSIM/model/cs/ndn-content-store.hpp
 RUN cp itec-ndn/extern/content-store-impl.hpp ns-3/src/ndnSIM/model/cs/content-store-impl.hpp
 RUN cp itec-ndn/extern/content-store-nocache.hpp ns-3/src/ndnSIM/model/cs/content-store-nocache.hpp
 RUN cp itec-ndn/extern/content-store-nocache.cpp ns-3/src/ndnSIM/model/cs/content-store-nocache.cpp
@@ -71,5 +71,7 @@ RUN cd BRITE && sudo mkdir /usr/local/include/ns3-dev/ns3/Models
 RUN cd BRITE/Models && sudo cp *.h /usr/local/include/ns3-dev/ns3/Models
 
 #itec-ndn scenario
+RUN sudo ln -s lib/x86_64-linux-gnu/ /usr/lib64
 RUN cd itec-ndn && ./waf configure
 RUN cd itec-ndn && ./waf
+RUN cd itec-ndn && sudo ./waf install
