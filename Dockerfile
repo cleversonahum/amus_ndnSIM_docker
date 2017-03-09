@@ -10,7 +10,7 @@ RUN apt-get install -y python-rsvg ipython
 RUN apt-get install -y build-essential
 RUN apt-get install -y libsqlite3-dev libcrypto++-dev
 RUN apt-get install -y libboost-all-dev
-RUN apt-get install -y wget
+
 
 # install pre-requesits for libdash
 RUN apt-get install -y git-core cmake libxml2-dev libcurl4-openssl-dev
@@ -78,4 +78,5 @@ RUN cd itec-ndn && ./waf
 RUN cd itec-ndn && sudo ./waf install
 
 #Download MPEG DASH dataset
-RUN wget -c -r ftp://ftp-itec.aau.at/pub/icn/ccr_dataset/
+#RUN apt-get install -y wget
+#RUN wget -c -r ftp://ftp-itec.aau.at/pub/icn/ccr_dataset/
